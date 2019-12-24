@@ -42,9 +42,10 @@
     </style>
     <!-- Custom styles for this template -->
     <link href="starter-template.css" rel="stylesheet">
+    <link href="index.css" rel="stylesheet"/>
 </head>
 <body>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -79,17 +80,23 @@
 
 <main role="main" class="container">
 
-    <div class="starter-template" align="center">
-        <div class="jumbotron" th:each="headArticle:${headArticleList}">
-            <h1 class="display-4" th:text="${headArticle.title}"/>
-            <p class="lead" th:text="${headArticle.content}"></p>
-            <hr class="my-4">
-            <p th:text="${headArticle.signature}"/>
-            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-            <a class="btn btn-primary btn-lg" href="/reply" role="button">回覆</a>
+    <div class="row main-background">
+        <div class="col-md" th:each="headArticle:${headArticleList}">
+            <table>
+                <tbody>
+                <tr style="height: 40px; width: 728px; vertical-align: middle">
+                    <!--                        <td th:text="${headArticle.popularity}"></td>-->
+                    <td class="form-row-popularity" th:text="${headArticle.popularity}"></td>
+                    <td class="form-row-title">
+                        <a th:href="@{/reply(head=${headArticle.articleID})}" th:text="${headArticle.title}"/>
+                    </td>
+                    <td class="form-row-replies" th:text="${headArticle.replies}"></td>
+                    <td class="form-row-editTime" th:text="${headArticle.editTime}"></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-
 </main><!-- /.container -->
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.4/dist/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script></body>

@@ -4,17 +4,15 @@ import kit.side.forum.entity.Article;
 import kit.side.forum.entity.HeadArticle;
 import kit.side.forum.service.ArticleService;
 import kit.side.forum.service.HeadArticleService;
-import org.apache.kafka.common.protocol.types.Field;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @Controller
 public class ForumController {
 
@@ -50,9 +48,11 @@ public class ForumController {
     }
 
     @GetMapping("/reply")
-    public String directToReplyPage(Model model){
+    public String directToReplyPage(Model model, @RequestParam("head") String articleID){
         Article article = new Article();
+        article.setHeadArticle(headArticleService.findById(Integer.parseInt(articleID)));
         model.addAttribute("article", article);
+        log.info(String.valueOf(article.getHeadArticle().getArticleID()));
         return "reply";
     }
 

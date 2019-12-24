@@ -23,16 +23,16 @@ public class Article {
     @Lob
     @Column(columnDefinition = "text")
     private String signature;
-    private Integer popularity;
-    private Integer likes;
-    private Integer replies;
+    private Integer popularity = 0;
+    private Integer likes = 0;
+//    private Integer replies;
     private Timestamp postTime;
     private Timestamp editTime;
     private Integer memberID;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer articleID;
-    private Boolean isHide;
+    private Boolean isHide = false;
     @ManyToOne
     @JoinColumn(name = "article_id")
     private HeadArticle headArticle;
@@ -105,13 +105,13 @@ public class Article {
         this.likes = likes;
     }
 
-    public Integer getReplies() {
-        return replies;
-    }
+//    public Integer getReplies() {
+//        return replies;
+//    }
 
-    public void setReplies(Integer replies) {
-        this.replies = replies;
-    }
+//    public void setReplies(Integer replies) {
+//        this.replies = replies;
+//    }
 
     public Timestamp getPostTime() {
         return postTime;
@@ -143,5 +143,13 @@ public class Article {
 
     public void setArticleID(Integer articleID) {
         this.articleID = articleID;
+    }
+
+    public HeadArticle getHeadArticle() {
+        return headArticle;
+    }
+
+    public void setHeadArticle(HeadArticle headArticle) {
+        this.headArticle = headArticle;
     }
 }

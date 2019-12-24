@@ -6,6 +6,8 @@ import kit.side.forum.entity.HeadArticle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,6 +38,13 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public void save(Article article) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentTime = simpleDateFormat.format(new java.sql.Timestamp(System.currentTimeMillis()));
+        Timestamp currentTimestamp = Timestamp.valueOf(currentTime);
+        if(article.getPostTime() == null)
+            article.setPostTime(currentTimestamp);
+
+        article.setEditTime(currentTimestamp);
         articleRepository.save(article);
     }
 

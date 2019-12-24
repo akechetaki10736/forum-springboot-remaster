@@ -1,0 +1,22 @@
+.form-row-popularity{
+    width: 100px;
+    align-content: center;
+    text-align: center;
+}
+
+.form-row-title{
+    width: 628px;
+    align-content: center;
+    text-align: center;
+}
+.form-row-replies{
+    width: 110px;
+    align-content: center;
+    text-align: center;
+}
+
+.form-row-editTime{
+    width: 100px;
+    align-content: center;
+    text-align: center;
+}
